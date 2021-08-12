@@ -9,18 +9,20 @@ import 'package:startup/widgets/login.dart';
 
 class AuthController extends GetxController {
   // Intilize the flutter app
-  FirebaseApp firebaseApp;
-  User firebaseUser;
-  FirebaseAuth firebaseAuth;
+  late FirebaseApp firebaseApp;
+  late User firebaseUser;
+  late FirebaseAuth firebaseAuth;
 
   Future<void> initlizeFirebaseApp() async {
     firebaseApp = await Firebase.initializeApp();
   }
 
   Future<Widget> checkUserLoggedIn() async {
+    // ignore: unnecessary_null_comparison
     if (firebaseApp == null) {
       await initlizeFirebaseApp();
     }
+    // ignore: unnecessary_null_comparison
     if (firebaseAuth == null) {
       firebaseAuth = FirebaseAuth.instance;
       update();
@@ -28,7 +30,7 @@ class AuthController extends GetxController {
     if (firebaseAuth.currentUser == null) {
       return LoginScreen();
     } else {
-      firebaseUser = firebaseAuth.currentUser;
+      firebaseUser = firebaseAuth.currentUser!;
       update();
       return HomePage();
     }
@@ -44,14 +46,14 @@ class AuthController extends GetxController {
       firebaseAuth = FirebaseAuth.instance;
       // Start of google sign in workflow
       final googleUser = await GoogleSignIn().signIn();
-      final googleAuth = await googleUser.authentication;
+      final googleAuth = await googleUser!.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
       final userCredentialData =
           await FirebaseAuth.instance.signInWithCredential(credential);
-      firebaseUser = userCredentialData.user;
+      firebaseUser = userCredentialData.user!;
       // update the state of controller variable to be reflected throughout the app
       update();
       Get.back();

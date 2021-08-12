@@ -6,7 +6,7 @@ import 'package:startup/widgets/loading.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
             return Text("Error");
           }
           if (snapshot.hasData) {
-            return snapshot.data;
+            return Text("${snapshot.data}");
           }
           return LoadingWidget();
         },

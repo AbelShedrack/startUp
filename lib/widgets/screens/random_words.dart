@@ -7,7 +7,7 @@ import 'package:startup/controllers/authentication.dart';
 import 'package:startup/widgets/screens/profile.dart';
 
 class RandomWords extends StatefulWidget {
-  const RandomWords({Key key}) : super(key: key);
+  const RandomWords({Key? key}) : super(key: key);
 
   @override
   _RandomWordsState createState() => _RandomWordsState();

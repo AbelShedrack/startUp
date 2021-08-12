@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:startup/controllers/authentication.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key key}) : super(key: key);
+  ProfileScreen({Key? key}) : super(key: key);
   final authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
